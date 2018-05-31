@@ -4,21 +4,9 @@ var util = require('util');
 var fs = require ('fs');
 var Twitter = require ('twitter');
 var pubnub = require("pubnub");
+var ejs = require('ejs');
 
-// Add express support for port management
-var express = require('express');
-var app     = express();
 
-app.set('port', (process.env.PORT || 5000));
-
-//For avoidong Heroku $PORT error
-app.get('/', function(request, response) {
-    response.render('/index');
-});
-
-app.listen(app.get('port'), function() {
-    console.log('Node app is running on port', app.get('port'));
-});
 
 var pncfg = {
    ssl           : true,  //  enable TLS Tunneling over TCP
