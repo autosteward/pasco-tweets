@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="VideoTweetStream">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>PubNub Twitter Stream Demo</title>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css' />
+    <link rel='stylesheet' href="style.css" />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pubnub/3.6.3/pubnub.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+
+    <script>
+			var pubnub = PUBNUB.init({
+				subscribe_key: 'sub-c-8f1f79c2-6363-11e8-a470-425dbd502137'
+			});
+			pubnub.subscribe({
+				channel : 'pasco-tweets',
+				message : function(tweet){
+                    $('#tweet-list').prepend('<li class="list-group-item"><img src="'+ tweet.user.profile_image_url + '">' 
+                        + '   ' + '<h4 class="twitter-name">' + tweet.user.name +  '</h4>   ' + tweet.text + '</li>');
+                    
+					
+				}
+			});
+    </script>
+
+  </head>
+  <body role="document">
+
+    <div class="container" role="main" style="margin-top: 20px;">
+    	<div class="panel panel-primary">
+			  <div class="panel-heading">#PascoLead 2018 Twitter Stream</div>
+			  <div class="panel-body">
+                  <div class="jumbotron text-center">
+                      <h2>Welcome to the Pasco County Schools Leadership Kickoff 2018</h2>
+                      <h4>Join in by using twitter #PascoLead</h4>
+                    </div>
+			  	
+
+			  </div>
+			  <ul id="tweet-list" class="list-group">
+			    <li class="list-group-item">Waiting for Tweets . . .</li>
+              </ul>
+              
+			</div>
+    </div>
+
+  </body>
+</html>
