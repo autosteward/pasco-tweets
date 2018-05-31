@@ -4,7 +4,6 @@ var util = require('util');
 var fs = require ('fs');
 var Twitter = require ('twitter');
 var pubnub = require("pubnub");
-var ejs = require('ejs');
 
 
 
